@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Energy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="logo" href="imagens/logodaily.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
+        <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
+        <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i> INSTAGRAM</a>
+        <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
+        <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
+        <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
+        <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
+        <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+    </div>
+
+    <div class="main-content">
+        <span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+        <div class="login-section">
+            <div class="logo">
+                <img src="imagens/logodaily.png" alt="Logo Daily Energy" class="logo-image">
+                <span>Daily Energy</span>
+            </div>
+            <form class="login-form">
+                <label>usuário</label>
+                <input type="text" placeholder="Digite seu usuário">
+                <label>senha</label>
+                <input type="password" placeholder="Digite sua senha">
+                <a href="#" class="forgot">esqueci minha senha</a>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+
+        <div class="image-section">
+            <img src="imagens/food.jpg" alt="cafe da manha saudavel">
+        </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

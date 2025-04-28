@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Consultor de Dietas</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 2;
+      color: white;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #2A4553;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #333;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+    }
+
+    .sidebar .icon {
+      width: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .main-content {
+      margin-left: 0;
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1e1e1e;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #2c2c2c;
+    }
+
+    input[type="number"], input[type="button"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 10px;
+      background-color: #333;
+      border: 1px solid #555;
+      color: white;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #resultado p {
+      font-size: 20px;
+    }
+
+    .dietas-sugestao {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="home.html"><img src="imagens/home.png" class="icon"> HOME</a>
+    <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"> INSTAGRAM</a>
+    <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"> CALCULADORA IMC</a>
+    <a href="tabela.html"><img src="imagens/table.png" class="icon"> TABELA NUTRICIONAL</a>
+    <a href="dieta.html"><img src="imagens/garfo.png" class="icon"> DIETAS</a>
+    <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
+    <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    
+    <!-- Formulário de IMC -->
+    <h1>Consultor de Dietas</h1>
+    
+    <div class="calculadora">
+      <h2>Informe seu IMC</h2>
+
+      <div class="input-group">
+        <label for="imc">IMC:</label>
+        <input type="number" id="imc" step="0.1" placeholder="Ex: 23.5">
+      </div>
+
+      <input type="button" value="Ver Dieta" onclick="sugerirDieta()">
+
+      <div id="resultado"></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+      } else {
+        sidebar.style.width = "250px";
+      }
+    }
+
+    function sugerirDieta() {
+      const imcValor = parseFloat(document.getElementById("imc").value);
+      const resultadoDiv = document.getElementById("resultado");
+
+      if (isNaN(imcValor) || imcValor <= 0) {
+        resultadoDiv.innerHTML = "Por favor, insira um valor válido de IMC!";
+        return;
+      }
+
+      let dieta = '';
+
+      if (imcValor < 18.5) {
+        dieta = 'Dieta recomendada: Dieta hipercalórica rica em proteínas e carboidratos.';
+      } else if (imcValor >= 18.5 && imcValor < 24.9) {
+        dieta = 'Dieta recomendada: Manutenção da alimentação balanceada com todos os nutrientes.';
+      } else if (imcValor >= 25 && imcValor < 29.9) {
+        dieta = 'Dieta recomendada: Dieta para perda de peso com baixo teor calórico e rica em fibras.';
+      } else {
+        dieta = 'Dieta recomendada: Dieta de baixo carboidrato e baixa gordura, com acompanhamento médico.';
+      }
+
+      resultadoDiv.innerHTML = `<p>Com base no seu IMC de ${imcValor.toFixed(2)}, a recomendação é:</p><p><strong>${dieta}</strong></p>`;
+    }
+  </script>
+
+</body>
+</html>

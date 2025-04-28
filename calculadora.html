@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de IMC</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      margin: 0;
+      color: white;
+    }
+
+    /* Botão menu */
+    .menu-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 2;
+      color: #ffffff;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #2A4553;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #333;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+    }
+
+    .sidebar .icon {
+      width: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .main-content {
+      margin-left: 0;
+      transition: margin-left 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculadora {
+      background-color: #2A4553;
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .calculadora h1 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .sexo-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .sexo-buttons button {
+      width: 48%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .sexo-buttons .masculino {
+      background-color: #3399ff;
+    }
+
+    .sexo-buttons .feminino {
+      background-color: #ff66b2;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: white;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #333;
+      color: white;
+    }
+
+    .btn-calcular {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .btn-calcular:hover {
+      background-color: #45a049;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botão para abrir a sidebar -->
+  <span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="home.html"><img src="imagens/home.png" class="icon"> HOME</a>
+    <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"> INSTAGRAM</a>
+    <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"> CALCULADORA IMC</a>
+    <a href="tabela.html"><img src="imagens/table.png" class="icon"> TABELA NUTRICIONAL</a>
+    <a href="dieta.html"><img src="imagens/garfo.png" class="icon"> DIETAS</a>
+    <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
+    <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content" id="main">
+    <div class="calculadora">
+      <h1>Calculadora de IMC</h1>
+
+      <div class="sexo-buttons">
+        <button type="button" class="masculino" onclick="selecionarSexo('Masculino')">Masculino</button>
+        <button type="button" class="feminino" onclick="selecionarSexo('Feminino')">Feminino</button>
+      </div>
+
+      <div class="input-group">
+        <label for="idade">Idade (anos):</label>
+        <input type="number" id="idade" placeholder="Ex: 25">
+      </div>
+
+      <div class="input-group">
+        <label for="altura">Altura (cm):</label>
+        <input type="number" id="altura" placeholder="Ex: 170">
+      </div>
+
+      <div class="input-group">
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" placeholder="Ex: 70">
+      </div>
+
+      <button class="btn-calcular" onclick="calcularIMC()">Calcular</button>
+
+      <div id="resultado"></div>
+    </div>
+  </div>
+
+  <script>
+    let sexoSelecionado = '';
+
+    function selecionarSexo(sexo) {
+      sexoSelecionado = sexo;
+    }
+
+    function calcularIMC() {
+      const idade = document.getElementById('idade').value;
+      const altura = document.getElementById('altura').value;
+      const peso = document.getElementById('peso').value;
+      const resultadoDiv = document.getElementById('resultado');
+
+      if (!sexoSelecionado || !idade || !altura || !peso) {
+        resultadoDiv.innerHTML = "Por favor, preencha todos os campos.";
+        return;
+      }
+
+      const alturaM = altura / 100;
+      const imc = peso / (alturaM * alturaM);
+      let classificacao = '';
+
+      if (imc < 18.5) {
+        classificacao = 'Abaixo do peso';
+      } else if (imc < 24.9) {
+        classificacao = 'Peso normal';
+      } else if (imc < 29.9) {
+        classificacao = 'Sobrepeso';
+      } else {
+        classificacao = 'Obesidade';
+      }
+
+      resultadoDiv.innerHTML = `
+        Sexo: ${sexoSelecionado}<br>
+        Idade: ${idade} anos<br>
+        IMC: ${imc.toFixed(2)}<br>
+        Classificação: ${classificacao}
+      `;
+    }
+
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+      } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela Nutricional Interativa</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 2;
+      color: white;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #2A4553;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #333;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+    }
+
+    .sidebar .icon {
+      width: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .main-content {
+      margin-left: 0;
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #1e1e1e;
+    }
+
+    tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      background-color: #222;
+      border: 1px solid #555;
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="home.html"><img src="imagens/home.png" class="icon"> HOME</a>
+    <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"> INSTAGRAM</a>
+    <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"> CALCULADORA IMC</a>
+    <a href="tabela.html"><img src="imagens/table.png" class="icon"> TABELA NUTRICIONAL</a>
+    <a href="dieta.html"><img src="imagens/garfo.png" class="icon"> DIETAS</a>
+    <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
+    <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+  </div>
+
+  <div class="main-content" id="main">
+    <h1>Tabela Nutricional Interativa</h1>
+
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Alimento</th>
+          <th>Qtd (g)</th>
+          <th>Calorias</th>
+          <th>Carboidratos (g)</th>
+          <th>Açúcares (g)</th>
+          <th>Proteínas (g)</th>
+          <th>Gord. Totais (g)</th>
+          <th>Gord. Saturadas (g)</th>
+          <th>Fibras (g)</th>
+          <th>Sódio (mg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Exemplo de alimento com base por 100g -->
+        <tr data-calorias="130" data-carboidratos="28" data-acucares="0.1" data-proteinas="2.7" data-gorduras="0.3" data-saturadas="0.1" data-fibras="0.4" data-sodio="1">
+          <td>Arroz branco</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">130</td>
+          <td class="carboidratos">28</td>
+          <td class="acucares">0.1</td>
+          <td class="proteinas">2.7</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">0.4</td>
+          <td class="sodio">1</td>
+        </tr>
+        <tr data-calorias="165" data-carboidratos="0" data-acucares="0" data-proteinas="31" data-gorduras="3.6" data-saturadas="1" data-fibras="0" data-sodio="74">
+          <td>Frango grelhado</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">165</td>
+          <td class="carboidratos">0</td>
+          <td class="acucares">0</td>
+          <td class="proteinas">31</td>
+          <td class="gorduras">3.6</td>
+          <td class="saturadas">1</td>
+          <td class="fibras">0</td>
+          <td class="sodio">74</td>
+        </tr>
+        <!-- Você pode adicionar mais alimentos duplicando esse bloco -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+      } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+      }
+    }
+
+    function recalcular(input) {
+      const tr = input.closest("tr");
+      const qtd = parseFloat(input.value) || 0;
+      const fator = qtd / 100;
+
+      const campos = ['calorias', 'carboidratos', 'acucares', 'proteinas', 'gorduras', 'saturadas', 'fibras', 'sodio'];
+      campos.forEach(campo => {
+        const valorBase = parseFloat(tr.dataset[campo]);
+        const novoValor = (valorBase * fator).toFixed(2);
+        tr.querySelector(`.${campo}`).textContent = novoValor;
+      });
+    }
+  </script>
+
+</body>
+</html>
