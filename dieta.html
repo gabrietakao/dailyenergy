@@ -119,20 +119,68 @@
       border-radius: 8px;
       margin-top: 20px;
     }
+
+    ul {
+    list-style-type: none;
+    background-color: #2a4553;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    } 
+
+    .active-link {
+    background-color: #1c2f38;
+    color: white;
+    }
+
+    li a:hover {
+    background-color: #2a4553;
+    color: #ffffff;
+    }
+
+    li a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    color: 0.3s;
+    }
   </style>
 </head>
 <body>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
-    <a href="home.html"><img src="imagens/home.png" class="icon"> HOME</a>
-    <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"> INSTAGRAM</a>
-    <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"> CALCULADORA IMC</a>
-    <a href="tabela.html"><img src="imagens/table.png" class="icon"> TABELA NUTRICIONAL</a>
-    <a href="dieta.html"><img src="imagens/garfo.png" class="icon"> DIETAS</a>
-    <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
-    <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+    <ul>
+        <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
+        <li>
+            <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i> INSTAGRAM</a>
+        </li>
+        <li>
+            <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
+        </li>
+        <li>
+            <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
+        </li>
+        <li class="active-link">
+            <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
+        </li>
+        <li>
+            <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
+        </li>
+        <li>
+            <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+        </li>
+    </ul>
   </div>
 
   <!-- Conteúdo principal -->
