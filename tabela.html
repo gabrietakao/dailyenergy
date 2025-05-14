@@ -6,9 +6,9 @@
   <style>
     body {
       margin: 0;
-      background-color: #121212;
+      background-color: #203641;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Georgia', serif;
     }
 
     .menu-btn {
@@ -44,7 +44,7 @@
     }
 
     .sidebar a:hover {
-      background-color: #333;
+      background-color: #1c2f38;
     }
 
     .sidebar .closebtn {
@@ -76,6 +76,7 @@
       border-collapse: collapse;
       margin-top: 20px;
       font-size: 14px;
+      font-family: Arial, sans-serif;
     }
 
     th, td {
@@ -88,8 +89,11 @@
       background-color: #1e1e1e;
     }
 
-    tr:nth-child(even) {
-      background-color: #2a2a2a;
+    tbody tr:nth-child(odd) {
+      background-color: #292929;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #1e1e1e;
     }
 
     input[type="number"] {
@@ -168,7 +172,7 @@
   <div class="main-content" id="main">
     <h1>Tabela Nutricional Interativa</h1>
 
-    <table id="tabela">
+    <table>
       <thead>
         <tr>
           <th>Alimento</th>
@@ -208,6 +212,18 @@
           <td class="saturadas">1</td>
           <td class="fibras">0</td>
           <td class="sodio">74</td>
+        </tr>
+        <tr data-calorias="76" data-carboidratos="13.6" data-acucares="0" data-proteinas="4.8" data-gorduras="0.5" data-saturadas="0" data-fibras="7.9" data-sodio="0">
+          <td>Feijão Carioca</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">76</td>
+          <td class="carboidratos">13.6</td>
+          <td class="acucares">0</td>
+          <td class="proteinas">4.8</td>
+          <td class="gorduras">0.5</td>
+          <td class="saturadas">0</td>
+          <td class="fibras">7.9</td>
+          <td class="sodio">0</td>
         </tr>
       </tbody>
     </table>
