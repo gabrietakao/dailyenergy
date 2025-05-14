@@ -7,3 +7,16 @@ function toggleMenu() {
     }
 }
 
+const masculinoBtn = document.getElementById('masculino');
+const femininoBtn = document.getElementById('feminino');
+
+masculinoBtn.addEventListener('click', () => {
+  masculinoBtn.classList.add('selected');
+  femininoBtn.classList.remove('selected');
+});
+
+femininoBtn.addEventListener('click', () => {
+  femininoBtn.classList.add('selected');
+  masculinoBtn.classList.remove('selected');
+});
+

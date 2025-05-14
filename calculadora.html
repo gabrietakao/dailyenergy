@@ -10,7 +10,7 @@
     }
 
     body {
-      background-color: #121212;
+      background-color: #ffffff;
       margin: 0;
       color: white;
     }
@@ -93,6 +93,12 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 15px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      margin: 0 5px;
     }
 
     .sexo-buttons button {
@@ -104,6 +110,10 @@
       cursor: pointer;
       color: white;
       transition: 0.3s;
+    }
+
+    .gender-btn.selected {
+      border: 2px solid white;
     }
 
     .sexo-buttons .masculino {
@@ -187,6 +197,7 @@
     font-size: 18px;
     transition: background-color 0.3s;
     color: 0.3s;
+
     }
   </style>
 </head>
@@ -229,8 +240,8 @@
       <h1>Calculadora de IMC</h1>
 
       <div class="sexo-buttons">
-        <button type="button" class="masculino" onclick="selecionarSexo('Masculino')">Masculino</button>
-        <button type="button" class="feminino" onclick="selecionarSexo('Feminino')">Feminino</button>
+        <button type="button" class="masculino gender-btn" id="masculino" onclick="selecionarSexo('Masculino')">Masculino</button>
+        <button type="button" class="feminino gender-btn" id="feminino" onclick="selecionarSexo('Feminino')">Feminino</button>
       </div>
 
       <div class="input-group">
@@ -258,8 +269,19 @@
     let sexoSelecionado = '';
 
     function selecionarSexo(sexo) {
-      sexoSelecionado = sexo;
+    sexoSelecionado = sexo;
+
+    // Remove a classe 'selected' de ambos os botões
+    document.getElementById('masculino').classList.remove('selected');
+    document.getElementById('feminino').classList.remove('selected');
+
+    // Adiciona a classe 'selected' ao botão correspondente
+    if (sexo === 'Masculino') {
+      document.getElementById('masculino').classList.add('selected');
+    } else if (sexo === 'Feminino') {
+      document.getElementById('feminino').classList.add('selected');
     }
+  }
 
     function calcularIMC() {
       const idade = document.getElementById('idade').value;
