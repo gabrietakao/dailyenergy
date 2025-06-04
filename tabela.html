@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Tabela Nutricional Interativa</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       margin: 0;
@@ -10,55 +12,6 @@
       background-size: 75%;
       color: white;
       font-family: 'Georgia', serif;
-    }
-
-    .menu-btn {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 26px;
-      cursor: pointer;
-      z-index: 2;
-      color: white;
-    }
-
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: #2A4553;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-    }
-
-    .sidebar a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      background-color: #1c2f38;
-    }
-
-    .sidebar .closebtn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 30px;
-    }
-
-    .sidebar .icon {
-      width: 20px;
-      margin-right: 10px;
-      vertical-align: middle;
     }
 
     .main-content {
@@ -71,9 +24,9 @@
       text-align: center;
       text-shadow:
         -1px -1px 0 black,
-         1px -1px 0 black,
-        -1px  1px 0 black,
-         1px  1px 0 black; 
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
       margin-bottom: 20px;
     }
 
@@ -85,7 +38,8 @@
       font-family: Arial, sans-serif;
     }
 
-    th, td {
+    th,
+    td {
       border: 1px solid #444;
       padding: 10px;
       text-align: center;
@@ -98,6 +52,7 @@
     tbody tr:nth-child(odd) {
       background-color: #292929;
     }
+
     tbody tr:nth-child(even) {
       background-color: #1e1e1e;
     }
@@ -110,40 +65,9 @@
       color: white;
       text-align: center;
     }
-
-    ul {
-    list-style-type: none;
-    background-color: #2a4553;
-    overflow: hidden;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    } 
-
-    .active-link {
-    background-color: #1c2f38;
-    color: white;
-    }
-
-    li a:hover {
-    background-color: #2a4553;
-    color: #ffffff;
-    }
-
-    li a {
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s;
-    color: 0.3s;
-    }
   </style>
 </head>
+
 <body>
 
   <span class="menu-btn" onclick="toggleMenu()">☰</span>
@@ -152,25 +76,26 @@
     <ul>
       <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
       <li>
-          <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
+        <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
       </li>
       <li>
-          <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i> INSTAGRAM</a>
+        <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i>
+          INSTAGRAM</a>
       </li>
       <li>
-          <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
+        <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
       </li>
       <li class="active-link">
-          <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
+        <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
       </li>
       <li>
-          <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
+        <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
       </li>
       <li>
-          <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
+        <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
       </li>
       <li>
-          <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+        <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
       </li>
     </ul>
   </div>
@@ -195,7 +120,8 @@
       </thead>
       <tbody>
         <!-- Exemplo de alimento com base por 100g -->
-        <tr data-calorias="130" data-carboidratos="28" data-acucares="0.1" data-proteinas="2.7" data-gorduras="0.3" data-saturadas="0.1" data-fibras="0.4" data-sodio="1">
+        <tr data-calorias="130" data-carboidratos="28" data-acucares="0.1" data-proteinas="2.7" data-gorduras="0.3"
+          data-saturadas="0.1" data-fibras="0.4" data-sodio="1">
           <td>Arroz branco</td>
           <td><input type="number" value="100" onchange="recalcular(this)"></td>
           <td class="calorias">130</td>
@@ -207,7 +133,8 @@
           <td class="fibras">0.4</td>
           <td class="sodio">1</td>
         </tr>
-        <tr data-calorias="165" data-carboidratos="0" data-acucares="0" data-proteinas="31" data-gorduras="3.6" data-saturadas="1" data-fibras="0" data-sodio="74">
+        <tr data-calorias="165" data-carboidratos="0" data-acucares="0" data-proteinas="31" data-gorduras="3.6"
+          data-saturadas="1" data-fibras="0" data-sodio="74">
           <td>Frango grelhado</td>
           <td><input type="number" value="100" onchange="recalcular(this)"></td>
           <td class="calorias">165</td>
@@ -219,7 +146,8 @@
           <td class="fibras">0</td>
           <td class="sodio">74</td>
         </tr>
-        <tr data-calorias="76" data-carboidratos="13.6" data-acucares="0" data-proteinas="4.8" data-gorduras="0.5" data-saturadas="0" data-fibras="7.9" data-sodio="0">
+        <tr data-calorias="76" data-carboidratos="13.6" data-acucares="0" data-proteinas="4.8" data-gorduras="0.5"
+          data-saturadas="0" data-fibras="7.9" data-sodio="0">
           <td>Feijão Carioca</td>
           <td><input type="number" value="100" onchange="recalcular(this)"></td>
           <td class="calorias">76</td>
@@ -236,18 +164,6 @@
   </div>
 
   <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const main = document.getElementById("main");
-      if (sidebar.style.width === "250px") {
-        sidebar.style.width = "0";
-        main.style.marginLeft = "0";
-      } else {
-        sidebar.style.width = "250px";
-        main.style.marginLeft = "250px";
-      }
-    }
-
     function recalcular(input) {
       const tr = input.closest("tr");
       const qtd = parseFloat(input.value) || 0;
@@ -261,6 +177,7 @@
       });
     }
   </script>
-
+  <script src="script.js"></script>
 </body>
+
 </html>

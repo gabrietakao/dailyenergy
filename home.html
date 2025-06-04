@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,128 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="logo" href="imagens/logodaily.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
 
+        body {
+            background: #b2b2b2;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 2;
+            color: #2a4553;
+        }
+
+        .main-content {
+            display: flex;
+            height: 100vh;
+        }
+
+        .login-section {
+            width: 30%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            color: #2a4553;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+        }
+
+        .login-form label {
+            margin: 10px 0 5px;
+            color: #2a4553;
+            font-style: italic;
+        }
+
+        .login-form input {
+            border: none;
+            border-bottom: 2px solid #2a4553;
+            outline: none;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .login-form .forgot {
+            text-decoration: none;
+            font-size: 12px;
+            color: #2a4553;
+            margin: 10px 0;
+        }
+
+        .login-form button {
+            background: #ccc;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .image-section {
+            width: 70%;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Estilos padrão (para desktop) */
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        /* Estilos para telas pequenas (mobile) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="sidebar" id="sidebar">
@@ -18,7 +139,8 @@
                 <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
             </li>
             <li>
-                <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i> INSTAGRAM</a>
+                <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i>
+                    INSTAGRAM</a>
             </li>
             <li>
                 <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
@@ -47,11 +169,11 @@
                 <span>Daily Energy</span>
             </div>
             <form class="login-form">
-                <label>usuário</label>
+                <label>USUÁRIO</label>
                 <input type="text" placeholder="Digite seu usuário">
-                <label>senha</label>
+                <label>SENHA</label>
                 <input type="password" placeholder="Digite sua senha">
-                <a href="#" class="forgot">esqueci minha senha</a>
+                <a href="#" class="forgot">Esqueci minha senha</a>
                 <button type="submit">Entrar</button>
             </form>
         </div>
@@ -60,7 +182,7 @@
             <img src="imagens/food.jpg" alt="cafe da manha saudavel">
         </div>
     </div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
