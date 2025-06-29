@@ -1,63 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Tabela Nutricional Interativa</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       margin: 0;
-      background-color: #121212;
+      background-image: url(imagens/Daily\ Energy\ Home\ \(1\)_page-0001.jpg);
+      background-size: 75%;
       color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    .menu-btn {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 26px;
-      cursor: pointer;
-      z-index: 2;
-      color: white;
-    }
-
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: #2A4553;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-    }
-
-    .sidebar a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      background-color: #333;
-    }
-
-    .sidebar .closebtn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 30px;
-    }
-
-    .sidebar .icon {
-      width: 20px;
-      margin-right: 10px;
-      vertical-align: middle;
+      font-family: 'Georgia', serif;
     }
 
     .main-content {
@@ -68,6 +22,11 @@
 
     h1 {
       text-align: center;
+      text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
       margin-bottom: 20px;
     }
 
@@ -76,9 +35,11 @@
       border-collapse: collapse;
       margin-top: 20px;
       font-size: 14px;
+      font-family: Arial, sans-serif;
     }
 
-    th, td {
+    th,
+    td {
       border: 1px solid #444;
       padding: 10px;
       text-align: center;
@@ -88,8 +49,12 @@
       background-color: #1e1e1e;
     }
 
-    tr:nth-child(even) {
-      background-color: #2a2a2a;
+    tbody tr:nth-child(odd) {
+      background-color: #292929;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #1e1e1e;
     }
 
     input[type="number"] {
@@ -100,40 +65,9 @@
       color: white;
       text-align: center;
     }
-
-    ul {
-    list-style-type: none;
-    background-color: #2a4553;
-    overflow: hidden;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    } 
-
-    .active-link {
-    background-color: #1c2f38;
-    color: white;
-    }
-
-    li a:hover {
-    background-color: #2a4553;
-    color: #ffffff;
-    }
-
-    li a {
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s;
-    color: 0.3s;
-    }
   </style>
 </head>
+
 <body>
 
   <span class="menu-btn" onclick="toggleMenu()">☰</span>
@@ -142,25 +76,20 @@
     <ul>
       <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
       <li>
-          <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
+        <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
       </li>
       <li>
-          <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i> INSTAGRAM</a>
+        <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i>
+          INSTAGRAM</a>
       </li>
       <li>
-          <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
+        <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
       </li>
       <li class="active-link">
-          <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
+        <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
       </li>
       <li>
-          <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
-      </li>
-      <li>
-          <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
-      </li>
-      <li>
-          <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
+        <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
       </li>
     </ul>
   </div>
@@ -168,7 +97,7 @@
   <div class="main-content" id="main">
     <h1>Tabela Nutricional Interativa</h1>
 
-    <table id="tabela">
+    <table>
       <thead>
         <tr>
           <th>Alimento</th>
@@ -184,48 +113,1383 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Exemplo de alimento com base por 100g -->
-        <tr data-calorias="130" data-carboidratos="28" data-acucares="0.1" data-proteinas="2.7" data-gorduras="0.3" data-saturadas="0.1" data-fibras="0.4" data-sodio="1">
-          <td>Arroz branco</td>
+        <tr data-calorias="54" data-carboidratos="11.4" data-acucares="8.1" data-proteinas="0.8" data-gorduras="0.3"
+          data-saturadas="0.1" data-fibras="3.0" data-sodio="1">
+          <td>Abacate</td>
           <td><input type="number" value="100" onchange="recalcular(this)"></td>
-          <td class="calorias">130</td>
-          <td class="carboidratos">28</td>
-          <td class="acucares">0.1</td>
-          <td class="proteinas">2.7</td>
+          <td class="calorias">54</td>
+          <td class="carboidratos">11.4</td>
+          <td class="acucares">8.1</td>
+          <td class="proteinas">0.8</td>
           <td class="gorduras">0.3</td>
           <td class="saturadas">0.1</td>
-          <td class="fibras">0.4</td>
+          <td class="fibras">3.0</td>
           <td class="sodio">1</td>
         </tr>
-        <tr data-calorias="165" data-carboidratos="0" data-acucares="0" data-proteinas="31" data-gorduras="3.6" data-saturadas="1" data-fibras="0" data-sodio="74">
+
+        <tr data-calorias="64" data-carboidratos="12.7" data-acucares="9.0" data-proteinas="0.8" data-gorduras="0.3"
+          data-saturadas="0.1" data-fibras="1.4" data-sodio="3">
+          <td>Abacaxi</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">64</td>
+          <td class="carboidratos">12.7</td>
+          <td class="acucares">9.0</td>
+          <td class="proteinas">0.8</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.4</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="79" data-carboidratos="17.7" data-acucares="9.6" data-proteinas="1.3" data-gorduras="0.5"
+          data-saturadas="0.0" data-fibras="2.4" data-sodio="3">
+          <td>Água de coco</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">79</td>
+          <td class="carboidratos">17.7</td>
+          <td class="acucares">9.6</td>
+          <td class="proteinas">1.3</td>
+          <td class="gorduras">0.5</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.4</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="27" data-carboidratos="2.5" data-acucares="1.0" data-proteinas="1.1" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="1.2" data-sodio="46">
+          <td>Abobrinha</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">27</td>
+          <td class="carboidratos">2.5</td>
+          <td class="acucares">1.0</td>
+          <td class="proteinas">1.1</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.2</td>
+          <td class="sodio">46</td>
+        </tr>
+
+        <tr data-calorias="22" data-carboidratos="6.8" data-acucares="1.2" data-proteinas="2.5" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="3.4" data-sodio="48">
+          <td>Alface crespa</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">22</td>
+          <td class="carboidratos">6.8</td>
+          <td class="acucares">1.2</td>
+          <td class="proteinas">2.5</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.4</td>
+          <td class="sodio">48</td>
+        </tr>
+
+        <tr data-calorias="28" data-carboidratos="5.1" data-acucares="1.6" data-proteinas="2.9" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="2.1" data-sodio="36">
+          <td>Alface</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">28</td>
+          <td class="carboidratos">5.1</td>
+          <td class="acucares">1.6</td>
+          <td class="proteinas">2.9</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.1</td>
+          <td class="sodio">36</td>
+        </tr>
+
+        <tr data-calorias="22" data-carboidratos="5.2" data-acucares="1.6" data-proteinas="1.3" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="1.9" data-sodio="10">
+          <td>Alho</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">22</td>
+          <td class="carboidratos">5.2</td>
+          <td class="acucares">1.6</td>
+          <td class="proteinas">1.3</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.9</td>
+          <td class="sodio">10</td>
+        </tr>
+
+        <tr data-calorias="53" data-carboidratos="13.7" data-acucares="13.3" data-proteinas="1.2" data-gorduras="0.3"
+          data-saturadas="0.1" data-fibras="2.8" data-sodio="3">
+          <td>Ameixa</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">53</td>
+          <td class="carboidratos">13.7</td>
+          <td class="acucares">13.3</td>
+          <td class="proteinas">1.2</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">2.8</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="567" data-carboidratos="24.5" data-acucares="2.4" data-proteinas="20.4" data-gorduras="47.9"
+          data-saturadas="4.1" data-fibras="9.0" data-sodio="5">
+          <td>Amendoim</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">567</td>
+          <td class="carboidratos">24.5</td>
+          <td class="acucares">2.4</td>
+          <td class="proteinas">20.4</td>
+          <td class="gorduras">47.9</td>
+          <td class="saturadas">4.1</td>
+          <td class="fibras">9.0</td>
+          <td class="sodio">5</td>
+        </tr>
+
+        <tr data-calorias="142" data-carboidratos="20.4" data-acucares="0.4" data-proteinas="3.1" data-gorduras="2.9"
+          data-saturadas="0.6" data-fibras="4.1" data-sodio="5">
+          <td>Arroz branco</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">142</td>
+          <td class="carboidratos">20.4</td>
+          <td class="acucares">0.4</td>
+          <td class="proteinas">3.1</td>
+          <td class="gorduras">2.9</td>
+          <td class="saturadas">0.6</td>
+          <td class="fibras">4.1</td>
+          <td class="sodio">5</td>
+        </tr>
+
+        <tr data-calorias="123" data-carboidratos="21.4" data-acucares="0.5" data-proteinas="4.4" data-gorduras="2.5"
+          data-saturadas="0.4" data-fibras="3.7" data-sodio="4">
+          <td>Arroz integral</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">123</td>
+          <td class="carboidratos">21.4</td>
+          <td class="acucares">0.5</td>
+          <td class="proteinas">4.4</td>
+          <td class="gorduras">2.5</td>
+          <td class="saturadas">0.4</td>
+          <td class="fibras">3.7</td>
+          <td class="sodio">4</td>
+        </tr>
+
+        <tr data-calorias="38" data-carboidratos="2.4" data-acucares="1.2" data-proteinas="2.3" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="3.2" data-sodio="8">
+          <td>Aspargo</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">38</td>
+          <td class="carboidratos">2.4</td>
+          <td class="acucares">1.2</td>
+          <td class="proteinas">2.3</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.2</td>
+          <td class="sodio">8</td>
+        </tr>
+
+        <tr data-calorias="163" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="21.2" data-gorduras="6.3"
+          data-saturadas="3.3" data-fibras="0.0" data-sodio="70">
+          <td>Atum</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">163</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">21.2</td>
+          <td class="gorduras">6.3</td>
+          <td class="saturadas">3.3</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">70</td>
+        </tr>
+
+        <tr data-calorias="105" data-carboidratos="26.3" data-acucares="2.0" data-proteinas="7.3" data-gorduras="1.7"
+          data-saturadas="0.7" data-fibras="4.5" data-sodio="3">
+          <td>Aveia</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">105</td>
+          <td class="carboidratos">26.3</td>
+          <td class="acucares">2.0</td>
+          <td class="proteinas">7.3</td>
+          <td class="gorduras">1.7</td>
+          <td class="saturadas">0.7</td>
+          <td class="fibras">4.5</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="22" data-carboidratos="5.6" data-acucares="1.7" data-proteinas="2.8" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="1.3" data-sodio="34">
+          <td>Azeitona</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">22</td>
+          <td class="carboidratos">5.6</td>
+          <td class="acucares">1.7</td>
+          <td class="proteinas">2.8</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.3</td>
+          <td class="sodio">34</td>
+        </tr>
+
+        <tr data-calorias="80" data-carboidratos="11.0" data-acucares="14.3" data-proteinas="1.2" data-gorduras="0.4"
+          data-saturadas="0.1" data-fibras="2.1" data-sodio="0">
+          <td>Açaí</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">80</td>
+          <td class="carboidratos">11.0</td>
+          <td class="acucares">14.3</td>
+          <td class="proteinas">1.2</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">2.1</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="80" data-carboidratos="15.1" data-acucares="14.3" data-proteinas="0.7" data-gorduras="0.4"
+          data-saturadas="0.1" data-fibras="1.5" data-sodio="3">
+          <td>Banana</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">80</td>
+          <td class="carboidratos">15.1</td>
+          <td class="acucares">14.3</td>
+          <td class="proteinas">0.7</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.5</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="111" data-carboidratos="29.5" data-acucares="0.2" data-proteinas="6.2" data-gorduras="3.5"
+          data-saturadas="0.5" data-fibras="1.6" data-sodio="3">
+          <td>Batata</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">111</td>
+          <td class="carboidratos">29.5</td>
+          <td class="acucares">0.2</td>
+          <td class="proteinas">6.2</td>
+          <td class="gorduras">3.5</td>
+          <td class="saturadas">0.5</td>
+          <td class="fibras">1.6</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="134" data-carboidratos="25.7" data-acucares="0.6" data-proteinas="6.9" data-gorduras="3.1"
+          data-saturadas="0.8" data-fibras="3.8" data-sodio="3">
+          <td>Batata-doce</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">134</td>
+          <td class="carboidratos">25.7</td>
+          <td class="acucares">0.6</td>
+          <td class="proteinas">6.9</td>
+          <td class="gorduras">3.1</td>
+          <td class="saturadas">0.8</td>
+          <td class="fibras">3.8</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="28" data-carboidratos="5.6" data-acucares="1.6" data-proteinas="2.8" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="1.8" data-sodio="35">
+          <td>Berinjela</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">28</td>
+          <td class="carboidratos">5.6</td>
+          <td class="acucares">1.6</td>
+          <td class="proteinas">2.8</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.8</td>
+          <td class="sodio">35</td>
+        </tr>
+
+        <tr data-calorias="36" data-carboidratos="5.9" data-acucares="1.6" data-proteinas="1.6" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="1.2" data-sodio="43">
+          <td>Beterraba</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">36</td>
+          <td class="carboidratos">5.9</td>
+          <td class="acucares">1.6</td>
+          <td class="proteinas">1.6</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.2</td>
+          <td class="sodio">43</td>
+        </tr>
+
+        <tr data-calorias="143" data-carboidratos="24.5" data-acucares="0.3" data-proteinas="6.2" data-gorduras="3.9"
+          data-saturadas="0.7" data-fibras="3.1" data-sodio="3">
+          <td>Biscoito de aveia</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">143</td>
+          <td class="carboidratos">24.5</td>
+          <td class="acucares">0.3</td>
+          <td class="proteinas">6.2</td>
+          <td class="gorduras">3.9</td>
+          <td class="saturadas">0.7</td>
+          <td class="fibras">3.1</td>
+          <td class="sodio">3</td>
+        </tr>
+
+
+        <tr data-calorias="33" data-carboidratos="6.3" data-acucares="1.3" data-proteinas="1.1" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="1.8" data-sodio="49">
+          <td>Brócolis</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">33</td>
+          <td class="carboidratos">6.3</td>
+          <td class="acucares">1.3</td>
+          <td class="proteinas">1.1</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.8</td>
+          <td class="sodio">49</td>
+        </tr>
+
+        <tr data-calorias="561" data-carboidratos="12.6" data-acucares="7.0" data-proteinas="20.2" data-gorduras="47.9"
+          data-saturadas="6.7" data-fibras="5.4" data-sodio="9">
+          <td>Cacau</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">561</td>
+          <td class="carboidratos">12.6</td>
+          <td class="acucares">7.0</td>
+          <td class="proteinas">20.2</td>
+          <td class="gorduras">47.9</td>
+          <td class="saturadas">6.7</td>
+          <td class="fibras">5.4</td>
+          <td class="sodio">9</td>
+        </tr>
+
+        <tr data-calorias="604" data-carboidratos="20.6" data-acucares="7.0" data-proteinas="27.5" data-gorduras="47.0"
+          data-saturadas="5.1" data-fibras="6.0" data-sodio="8">
+          <td>Cacau em pó 100%</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">604</td>
+          <td class="carboidratos">20.6</td>
+          <td class="acucares">7.0</td>
+          <td class="proteinas">27.5</td>
+          <td class="gorduras">47.0</td>
+          <td class="saturadas">5.1</td>
+          <td class="fibras">6.0</td>
+          <td class="sodio">8</td>
+        </tr>
+
+        <tr data-calorias="135" data-carboidratos="22.1" data-acucares="1.4" data-proteinas="7.8" data-gorduras="3.0"
+          data-saturadas="0.6" data-fibras="4.1" data-sodio="3">
+          <td>Café</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">135</td>
+          <td class="carboidratos">22.1</td>
+          <td class="acucares">1.4</td>
+          <td class="proteinas">7.8</td>
+          <td class="gorduras">3.0</td>
+          <td class="saturadas">0.6</td>
+          <td class="fibras">4.1</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="157" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="21.1" data-gorduras="8.1"
+          data-saturadas="5.0" data-fibras="0.0" data-sodio="57">
+          <td>Camarão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">157</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">21.1</td>
+          <td class="gorduras">8.1</td>
+          <td class="saturadas">5.0</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">57</td>
+        </tr>
+
+        <tr data-calorias="636" data-carboidratos="19.2" data-acucares="3.4" data-proteinas="25.3" data-gorduras="57.5"
+          data-saturadas="8.0" data-fibras="9.4" data-sodio="10">
+          <td>Castanha de caju</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">636</td>
+          <td class="carboidratos">19.2</td>
+          <td class="acucares">3.4</td>
+          <td class="proteinas">25.3</td>
+          <td class="gorduras">57.5</td>
+          <td class="saturadas">8.0</td>
+          <td class="fibras">9.4</td>
+          <td class="sodio">10</td>
+        </tr>
+
+        <tr data-calorias="578" data-carboidratos="20.1" data-acucares="3.0" data-proteinas="28.4" data-gorduras="40.3"
+          data-saturadas="5.8" data-fibras="5.5" data-sodio="10">
+          <td>Castanha-do-pará</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">578</td>
+          <td class="carboidratos">20.1</td>
+          <td class="acucares">3.0</td>
+          <td class="proteinas">28.4</td>
+          <td class="gorduras">40.3</td>
+          <td class="saturadas">5.8</td>
+          <td class="fibras">5.5</td>
+          <td class="sodio">10</td>
+        </tr>
+
+        <tr data-calorias="36" data-carboidratos="4.3" data-acucares="1.5" data-proteinas="1.7" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="3.1" data-sodio="23">
+          <td>Cenoura</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">36</td>
+          <td class="carboidratos">4.3</td>
+          <td class="acucares">1.5</td>
+          <td class="proteinas">1.7</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.1</td>
+          <td class="sodio">23</td>
+        </tr>
+
+        <tr data-calorias="512" data-carboidratos="23.7" data-acucares="4.7" data-proteinas="30.0" data-gorduras="42.9"
+          data-saturadas="5.7" data-fibras="9.8" data-sodio="3">
+          <td>Chia</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">512</td>
+          <td class="carboidratos">23.7</td>
+          <td class="acucares">4.7</td>
+          <td class="proteinas">30.0</td>
+          <td class="gorduras">42.9</td>
+          <td class="saturadas">5.7</td>
+          <td class="fibras">9.8</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="604" data-carboidratos="13.1" data-acucares="5.9" data-proteinas="29.5" data-gorduras="48.3"
+          data-saturadas="5.2" data-fibras="7.9" data-sodio="4">
+          <td>Chocolate 70% cacau</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">604</td>
+          <td class="carboidratos">13.1</td>
+          <td class="acucares">5.9</td>
+          <td class="proteinas">29.5</td>
+          <td class="gorduras">48.3</td>
+          <td class="saturadas">5.2</td>
+          <td class="fibras">7.9</td>
+          <td class="sodio">4</td>
+        </tr>
+
+        <tr data-calorias="40" data-carboidratos="10.2" data-acucares="13.3" data-proteinas="0.9" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="1.3" data-sodio="1">
+          <td>Coco</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">40</td>
+          <td class="carboidratos">10.2</td>
+          <td class="acucares">13.3</td>
+          <td class="proteinas">0.9</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.3</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="29" data-carboidratos="4.7" data-acucares="1.2" data-proteinas="2.7" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="2.2" data-sodio="12">
+          <td>Couve</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">29</td>
+          <td class="carboidratos">4.7</td>
+          <td class="acucares">1.2</td>
+          <td class="proteinas">2.7</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.2</td>
+          <td class="sodio">12</td>
+        </tr>
+
+        <tr data-calorias="21" data-carboidratos="6.9" data-acucares="1.2" data-proteinas="3.0" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="1.5" data-sodio="58">
+          <td>Couve-flor</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">21</td>
+          <td class="carboidratos">6.9</td>
+          <td class="acucares">1.2</td>
+          <td class="proteinas">3.0</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.5</td>
+          <td class="sodio">58</td>
+        </tr>
+
+        <tr data-calorias="99" data-carboidratos="10.0" data-acucares="2.7" data-proteinas="6.9" data-gorduras="5.8"
+          data-saturadas="3.5" data-fibras="0.0" data-sodio="103">
+          <td>Creme de leite</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">99</td>
+          <td class="carboidratos">10.0</td>
+          <td class="acucares">2.7</td>
+          <td class="proteinas">6.9</td>
+          <td class="gorduras">5.8</td>
+          <td class="saturadas">3.5</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">103</td>
+        </tr>
+
+        <tr data-calorias="111" data-carboidratos="22.9" data-acucares="0.4" data-proteinas="5.9" data-gorduras="1.3"
+          data-saturadas="0.2" data-fibras="3.7" data-sodio="0">
+          <td>Ervilha</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">111</td>
+          <td class="carboidratos">22.9</td>
+          <td class="acucares">0.4</td>
+          <td class="proteinas">5.9</td>
+          <td class="gorduras">1.3</td>
+          <td class="saturadas">0.2</td>
+          <td class="fibras">3.7</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="38" data-carboidratos="3.1" data-acucares="1.3" data-proteinas="1.6" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="1.6" data-sodio="27">
+          <td>Espinafre</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">38</td>
+          <td class="carboidratos">3.1</td>
+          <td class="acucares">1.3</td>
+          <td class="proteinas">1.6</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.6</td>
+          <td class="sodio">27</td>
+        </tr>
+
+
+        <tr data-calorias="123" data-carboidratos="22.1" data-acucares="1.1" data-proteinas="7.9" data-gorduras="1.4"
+          data-saturadas="0.9" data-fibras="1.1" data-sodio="1">
+          <td>Farinha de trigo</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">123</td>
+          <td class="carboidratos">22.1</td>
+          <td class="acucares">1.1</td>
+          <td class="proteinas">7.9</td>
+          <td class="gorduras">1.4</td>
+          <td class="saturadas">0.9</td>
+          <td class="fibras">1.1</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="108" data-carboidratos="26.1" data-acucares="0.7" data-proteinas="3.9" data-gorduras="1.1"
+          data-saturadas="0.8" data-fibras="3.7" data-sodio="3">
+          <td>Feijão carioca</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">108</td>
+          <td class="carboidratos">26.1</td>
+          <td class="acucares">0.7</td>
+          <td class="proteinas">3.9</td>
+          <td class="gorduras">1.1</td>
+          <td class="saturadas">0.8</td>
+          <td class="fibras">3.7</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="157" data-carboidratos="22.9" data-acucares="1.6" data-proteinas="4.6" data-gorduras="3.4"
+          data-saturadas="0.7" data-fibras="3.0" data-sodio="0">
+          <td>Feijão preto</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">157</td>
+          <td class="carboidratos">22.9</td>
+          <td class="acucares">1.6</td>
+          <td class="proteinas">4.6</td>
+          <td class="gorduras">3.4</td>
+          <td class="saturadas">0.7</td>
+          <td class="fibras">3.0</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="238" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="22.7" data-gorduras="13.9"
+          data-saturadas="3.4" data-fibras="0.0" data-sodio="50">
           <td>Frango grelhado</td>
           <td><input type="number" value="100" onchange="recalcular(this)"></td>
-          <td class="calorias">165</td>
-          <td class="carboidratos">0</td>
-          <td class="acucares">0</td>
-          <td class="proteinas">31</td>
+          <td class="calorias">238</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">22.7</td>
+          <td class="gorduras">13.9</td>
+          <td class="saturadas">3.4</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">50</td>
+        </tr>
+
+        <tr data-calorias="45" data-carboidratos="12.0" data-acucares="10.0" data-proteinas="1.1" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="1.3" data-sodio="3">
+          <td>Goiaba</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">45</td>
+          <td class="carboidratos">12.0</td>
+          <td class="acucares">10.0</td>
+          <td class="proteinas">1.1</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.3</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="119" data-carboidratos="23.8" data-acucares="0.2" data-proteinas="3.0" data-gorduras="3.7"
+          data-saturadas="0.5" data-fibras="4.3" data-sodio="2">
+          <td>Granola</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">119</td>
+          <td class="carboidratos">23.8</td>
+          <td class="acucares">0.2</td>
+          <td class="proteinas">3.0</td>
+          <td class="gorduras">3.7</td>
+          <td class="saturadas">0.5</td>
+          <td class="fibras">4.3</td>
+          <td class="sodio">2</td>
+        </tr>
+
+        <tr data-calorias="121" data-carboidratos="24.6" data-acucares="0.4" data-proteinas="7.2" data-gorduras="1.1"
+          data-saturadas="1.0" data-fibras="1.3" data-sodio="5">
+          <td>Grão-de-bico</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">121</td>
+          <td class="carboidratos">24.6</td>
+          <td class="acucares">0.4</td>
+          <td class="proteinas">7.2</td>
+          <td class="gorduras">1.1</td>
+          <td class="saturadas">1.0</td>
+          <td class="fibras">1.3</td>
+          <td class="sodio">5</td>
+        </tr>
+
+        <tr data-calorias="145" data-carboidratos="6.0" data-acucares="7.6" data-proteinas="4.1" data-gorduras="3.6"
+          data-saturadas="3.8" data-fibras="0.0" data-sodio="161">
+          <td>Iogurte grego</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">145</td>
+          <td class="carboidratos">6.0</td>
+          <td class="acucares">7.6</td>
+          <td class="proteinas">4.1</td>
           <td class="gorduras">3.6</td>
-          <td class="saturadas">1</td>
-          <td class="fibras">0</td>
+          <td class="saturadas">3.8</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">161</td>
+        </tr>
+
+        <tr data-calorias="105" data-carboidratos="4.5" data-acucares="4.8" data-proteinas="6.6" data-gorduras="5.0"
+          data-saturadas="2.5" data-fibras="0.0" data-sodio="126">
+          <td>Iogurte natural</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">105</td>
+          <td class="carboidratos">4.5</td>
+          <td class="acucares">4.8</td>
+          <td class="proteinas">6.6</td>
+          <td class="gorduras">5.0</td>
+          <td class="saturadas">2.5</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">126</td>
+        </tr>
+
+        <tr data-calorias="63" data-carboidratos="19.1" data-acucares="14.8" data-proteinas="0.6" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="1.9" data-sodio="0">
+          <td>Jabuticaba</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">63</td>
+          <td class="carboidratos">19.1</td>
+          <td class="acucares">14.8</td>
+          <td class="proteinas">0.6</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.9</td>
+          <td class="sodio">0</td>
+        </tr>
+        <tr data-calorias="80" data-carboidratos="19.1" data-acucares="8.3" data-proteinas="1.3" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="1.2" data-sodio="0">
+          <td>Jaca</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">80</td>
+          <td class="carboidratos">19.1</td>
+          <td class="acucares">8.3</td>
+          <td class="proteinas">1.3</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.2</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="33" data-carboidratos="2.2" data-acucares="1.4" data-proteinas="2.7" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="1.5" data-sodio="19">
+          <td>Jiló</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">33</td>
+          <td class="carboidratos">2.2</td>
+          <td class="acucares">1.4</td>
+          <td class="proteinas">2.7</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.5</td>
+          <td class="sodio">19</td>
+        </tr>
+
+        <tr data-calorias="52" data-carboidratos="15.3" data-acucares="9.3" data-proteinas="0.8" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="2.6" data-sodio="1">
+          <td>Kiwi</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">52</td>
+          <td class="carboidratos">15.3</td>
+          <td class="acucares">9.3</td>
+          <td class="proteinas">0.8</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.6</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="68" data-carboidratos="19.8" data-acucares="9.6" data-proteinas="0.8" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="2.8" data-sodio="2">
+          <td>Laranja</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">68</td>
+          <td class="carboidratos">19.8</td>
+          <td class="acucares">9.6</td>
+          <td class="proteinas">0.8</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.8</td>
+          <td class="sodio">2</td>
+        </tr>
+
+        <tr data-calorias="107" data-carboidratos="5.5" data-acucares="6.2" data-proteinas="9.3" data-gorduras="4.4"
+          data-saturadas="5.1" data-fibras="0.0" data-sodio="164">
+          <td>Leite desnatado</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">107</td>
+          <td class="carboidratos">5.5</td>
+          <td class="acucares">6.2</td>
+          <td class="proteinas">9.3</td>
+          <td class="gorduras">4.4</td>
+          <td class="saturadas">5.1</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">164</td>
+        </tr>
+
+        <tr data-calorias="73" data-carboidratos="9.1" data-acucares="7.1" data-proteinas="7.7" data-gorduras="6.7"
+          data-saturadas="2.0" data-fibras="0.0" data-sodio="140">
+          <td>Leite integral</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">73</td>
+          <td class="carboidratos">9.1</td>
+          <td class="acucares">7.1</td>
+          <td class="proteinas">7.7</td>
+          <td class="gorduras">6.7</td>
+          <td class="saturadas">2.0</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">140</td>
+        </tr>
+
+        <tr data-calorias="155" data-carboidratos="27.9" data-acucares="1.8" data-proteinas="2.5" data-gorduras="1.2"
+          data-saturadas="0.5" data-fibras="4.8" data-sodio="2">
+          <td>Lentilha</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">155</td>
+          <td class="carboidratos">27.9</td>
+          <td class="acucares">1.8</td>
+          <td class="proteinas">2.5</td>
+          <td class="gorduras">1.2</td>
+          <td class="saturadas">0.5</td>
+          <td class="fibras">4.8</td>
+          <td class="sodio">2</td>
+        </tr>
+
+        <tr data-calorias="78" data-carboidratos="19.5" data-acucares="14.1" data-proteinas="0.8" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="2.1" data-sodio="1">
+          <td>Limão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">78</td>
+          <td class="carboidratos">19.5</td>
+          <td class="acucares">14.1</td>
+          <td class="proteinas">0.8</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.1</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="80" data-carboidratos="16.9" data-acucares="8.3" data-proteinas="1.0" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="2.3" data-sodio="0">
+          <td>Mamão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">80</td>
+          <td class="carboidratos">16.9</td>
+          <td class="acucares">8.3</td>
+          <td class="proteinas">1.0</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.3</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="135" data-carboidratos="28.2" data-acucares="0.4" data-proteinas="7.6" data-gorduras="1.4"
+          data-saturadas="0.8" data-fibras="3.6" data-sodio="2">
+          <td>Mandioca</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">135</td>
+          <td class="carboidratos">28.2</td>
+          <td class="acucares">0.4</td>
+          <td class="proteinas">7.6</td>
+          <td class="gorduras">1.4</td>
+          <td class="saturadas">0.8</td>
+          <td class="fibras">3.6</td>
+          <td class="sodio">2</td>
+        </tr>
+
+        <tr data-calorias="108" data-carboidratos="23.7" data-acucares="0.4" data-proteinas="4.3" data-gorduras="1.6"
+          data-saturadas="0.8" data-fibras="3.0" data-sodio="3">
+          <td>Mandioquinha</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">108</td>
+          <td class="carboidratos">23.7</td>
+          <td class="acucares">0.4</td>
+          <td class="proteinas">4.3</td>
+          <td class="gorduras">1.6</td>
+          <td class="saturadas">0.8</td>
+          <td class="fibras">3.0</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="43" data-carboidratos="17.9" data-acucares="11.5" data-proteinas="0.7" data-gorduras="0.3"
+          data-saturadas="0.1" data-fibras="1.7" data-sodio="2">
+          <td>Manga</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">43</td>
+          <td class="carboidratos">17.9</td>
+          <td class="acucares">11.5</td>
+          <td class="proteinas">0.7</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.7</td>
+          <td class="sodio">2</td>
+        </tr>
+
+        <tr data-calorias="34" data-carboidratos="3.8" data-acucares="1.9" data-proteinas="2.6" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="2.2" data-sodio="39">
+          <td>Manjericão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">34</td>
+          <td class="carboidratos">3.8</td>
+          <td class="acucares">1.9</td>
+          <td class="proteinas">2.6</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.2</td>
+          <td class="sodio">39</td>
+        </tr>
+
+        <tr data-calorias="64" data-carboidratos="18.4" data-acucares="9.0" data-proteinas="0.7" data-gorduras="0.3"
+          data-saturadas="0.1" data-fibras="1.6" data-sodio="0">
+          <td>Maçã</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">64</td>
+          <td class="carboidratos">18.4</td>
+          <td class="acucares">9.0</td>
+          <td class="proteinas">0.7</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.6</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="47" data-carboidratos="13.4" data-acucares="8.6" data-proteinas="0.9" data-gorduras="0.5"
+          data-saturadas="0.1" data-fibras="1.6" data-sodio="0">
+          <td>Melancia</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">47</td>
+          <td class="carboidratos">13.4</td>
+          <td class="acucares">8.6</td>
+          <td class="proteinas">0.9</td>
+          <td class="gorduras">0.5</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.6</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="45" data-carboidratos="11.9" data-acucares="8.4" data-proteinas="0.7" data-gorduras="0.4"
+          data-saturadas="0.1" data-fibras="2.8" data-sodio="0">
+          <td>Melão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">45</td>
+          <td class="carboidratos">11.9</td>
+          <td class="acucares">8.4</td>
+          <td class="proteinas">0.7</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">2.8</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="113" data-carboidratos="25.2" data-acucares="2.0" data-proteinas="6.0" data-gorduras="1.7"
+          data-saturadas="0.7" data-fibras="4.4" data-sodio="1">
+          <td>Milho verde</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">113</td>
+          <td class="carboidratos">25.2</td>
+          <td class="acucares">2.0</td>
+          <td class="proteinas">6.0</td>
+          <td class="gorduras">1.7</td>
+          <td class="saturadas">0.7</td>
+          <td class="fibras">4.4</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="70" data-carboidratos="15.9" data-acucares="13.2" data-proteinas="1.3" data-gorduras="0.4"
+          data-saturadas="0.1" data-fibras="2.8" data-sodio="1">
+          <td>Morango</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">70</td>
+          <td class="carboidratos">15.9</td>
+          <td class="acucares">13.2</td>
+          <td class="proteinas">1.3</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">2.8</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="15" data-carboidratos="3.1" data-acucares="1.2" data-proteinas="2.4" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="3.2" data-sodio="35">
+          <td>Mostarda</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">15</td>
+          <td class="carboidratos">3.1</td>
+          <td class="acucares">1.2</td>
+          <td class="proteinas">2.4</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.2</td>
+          <td class="sodio">35</td>
+        </tr>
+
+        <tr data-calorias="19" data-carboidratos="3.9" data-acucares="1.9" data-proteinas="2.7" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="1.2" data-sodio="60">
+          <td>Nabo</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">19</td>
+          <td class="carboidratos">3.9</td>
+          <td class="acucares">1.9</td>
+          <td class="proteinas">2.7</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.2</td>
+          <td class="sodio">60</td>
+        </tr>
+
+        <tr data-calorias="156" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="26.8" data-gorduras="5.3"
+          data-saturadas="4.1" data-fibras="0.0" data-sodio="73">
+          <td>Ovo cozido</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">156</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">26.8</td>
+          <td class="gorduras">5.3</td>
+          <td class="saturadas">4.1</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">73</td>
+        </tr>
+
+        <tr data-calorias="38" data-carboidratos="2.9" data-acucares="1.2" data-proteinas="2.5" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="3.3" data-sodio="34">
+          <td>Palmito</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">38</td>
+          <td class="carboidratos">2.9</td>
+          <td class="acucares">1.2</td>
+          <td class="proteinas">2.5</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.3</td>
+          <td class="sodio">34</td>
+        </tr>
+
+        <tr data-calorias="111" data-carboidratos="22.8" data-acucares="0.2" data-proteinas="8.0" data-gorduras="2.6"
+          data-saturadas="0.6" data-fibras="4.0" data-sodio="4">
+          <td>Panqueca integral de frango</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">111</td>
+          <td class="carboidratos">22.8</td>
+          <td class="acucares">0.2</td>
+          <td class="proteinas">8.0</td>
+          <td class="gorduras">2.6</td>
+          <td class="saturadas">0.6</td>
+          <td class="fibras">4.0</td>
+          <td class="sodio">4</td>
+        </tr>
+
+        <tr data-calorias="111" data-carboidratos="4.9" data-acucares="3.0" data-proteinas="6.4" data-gorduras="3.8"
+          data-saturadas="3.3" data-fibras="0.0" data-sodio="130">
+          <td>Parmesão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">111</td>
+          <td class="carboidratos">4.9</td>
+          <td class="acucares">3.0</td>
+          <td class="proteinas">6.4</td>
+          <td class="gorduras">3.8</td>
+          <td class="saturadas">3.3</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">130</td>
+        </tr>
+
+        <tr data-calorias="184" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="20.1" data-gorduras="10.2"
+          data-saturadas="4.6" data-fibras="0.0" data-sodio="63">
+          <td>Peito de frango</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">184</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">20.1</td>
+          <td class="gorduras">10.2</td>
+          <td class="saturadas">4.6</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">63</td>
+        </tr>
+
+        <tr data-calorias="216" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="27.9" data-gorduras="9.1"
+          data-saturadas="5.3" data-fibras="0.0" data-sodio="85">
+          <td>Peito de peru</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">216</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">27.9</td>
+          <td class="gorduras">9.1</td>
+          <td class="saturadas">5.3</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">85</td>
+        </tr>
+
+        <tr data-calorias="34" data-carboidratos="6.8" data-acucares="0.7" data-proteinas="2.2" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="3.9" data-sodio="45">
+          <td>Pepino</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">34</td>
+          <td class="carboidratos">6.8</td>
+          <td class="acucares">0.7</td>
+          <td class="proteinas">2.2</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.9</td>
+          <td class="sodio">45</td>
+        </tr>
+
+        <tr data-calorias="66" data-carboidratos="12.7" data-acucares="13.4" data-proteinas="1.0" data-gorduras="0.2"
+          data-saturadas="0.1" data-fibras="1.8" data-sodio="1">
+          <td>Pera</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">66</td>
+          <td class="carboidratos">12.7</td>
+          <td class="acucares">13.4</td>
+          <td class="proteinas">1.0</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.8</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="29" data-carboidratos="2.1" data-acucares="1.4" data-proteinas="2.0" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="2.5" data-sodio="46">
+          <td>Pimentão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">29</td>
+          <td class="carboidratos">2.1</td>
+          <td class="acucares">1.4</td>
+          <td class="proteinas">2.0</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.5</td>
+          <td class="sodio">46</td>
+        </tr>
+
+        <tr data-calorias="149" data-carboidratos="26.7" data-acucares="0.7" data-proteinas="3.0" data-gorduras="1.6"
+          data-saturadas="0.7" data-fibras="2.6" data-sodio="2">
+          <td>Pipoca</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">149</td>
+          <td class="carboidratos">26.7</td>
+          <td class="acucares">0.7</td>
+          <td class="proteinas">3.0</td>
+          <td class="gorduras">1.6</td>
+          <td class="saturadas">0.7</td>
+          <td class="fibras">2.6</td>
+          <td class="sodio">2</td>
+        </tr>
+
+        <tr data-calorias="166" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="22.3" data-gorduras="10.7"
+          data-saturadas="2.8" data-fibras="0.0" data-sodio="74">
+          <td>Porco grelhado</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">166</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">22.3</td>
+          <td class="gorduras">10.7</td>
+          <td class="saturadas">2.8</td>
+          <td class="fibras">0.0</td>
           <td class="sodio">74</td>
+        </tr>
+
+        <tr data-calorias="108" data-carboidratos="28.3" data-acucares="1.5" data-proteinas="5.3" data-gorduras="3.4"
+          data-saturadas="0.9" data-fibras="1.3" data-sodio="1">
+          <td>Pão francês</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">108</td>
+          <td class="carboidratos">28.3</td>
+          <td class="acucares">1.5</td>
+          <td class="proteinas">5.3</td>
+          <td class="gorduras">3.4</td>
+          <td class="saturadas">0.9</td>
+          <td class="fibras">1.3</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="147" data-carboidratos="24.6" data-acucares="0.5" data-proteinas="4.2" data-gorduras="1.1"
+          data-saturadas="0.7" data-fibras="3.9" data-sodio="1">
+          <td>Pão integral</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">147</td>
+          <td class="carboidratos">24.6</td>
+          <td class="acucares">0.5</td>
+          <td class="proteinas">4.2</td>
+          <td class="gorduras">1.1</td>
+          <td class="saturadas">0.7</td>
+          <td class="fibras">3.9</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="43" data-carboidratos="10.2" data-acucares="13.9" data-proteinas="1.4" data-gorduras="0.1"
+          data-saturadas="0.1" data-fibras="3.0" data-sodio="1">
+          <td>Pêssego</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">43</td>
+          <td class="carboidratos">10.2</td>
+          <td class="acucares">13.9</td>
+          <td class="proteinas">1.4</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">3.0</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="62" data-carboidratos="6.3" data-acucares="4.6" data-proteinas="5.2" data-gorduras="2.3"
+          data-saturadas="5.0" data-fibras="0.0" data-sodio="48">
+          <td>Queijo minas</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">62</td>
+          <td class="carboidratos">6.3</td>
+          <td class="acucares">4.6</td>
+          <td class="proteinas">5.2</td>
+          <td class="gorduras">2.3</td>
+          <td class="saturadas">5.0</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">48</td>
+        </tr>
+
+        <tr data-calorias="20" data-carboidratos="5.7" data-acucares="1.5" data-proteinas="1.5" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="3.9" data-sodio="16">
+          <td>Quiabo</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">20</td>
+          <td class="carboidratos">5.7</td>
+          <td class="acucares">1.5</td>
+          <td class="proteinas">1.5</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.9</td>
+          <td class="sodio">16</td>
+        </tr>
+
+        <tr data-calorias="32" data-carboidratos="4.5" data-acucares="1.7" data-proteinas="2.6" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="1.5" data-sodio="24">
+          <td>Rabanete</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">32</td>
+          <td class="carboidratos">4.5</td>
+          <td class="acucares">1.7</td>
+          <td class="proteinas">2.6</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.5</td>
+          <td class="sodio">24</td>
+        </tr>
+
+        <tr data-calorias="29" data-carboidratos="4.9" data-acucares="1.9" data-proteinas="1.8" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="1.2" data-sodio="31">
+          <td>Repolho</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">29</td>
+          <td class="carboidratos">4.9</td>
+          <td class="acucares">1.9</td>
+          <td class="proteinas">1.8</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">1.2</td>
+          <td class="sodio">31</td>
+        </tr>
+
+        <tr data-calorias="67" data-carboidratos="7.8" data-acucares="6.0" data-proteinas="4.4" data-gorduras="9.4"
+          data-saturadas="4.5" data-fibras="0.0" data-sodio="112">
+          <td>Ricota</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">67</td>
+          <td class="carboidratos">7.8</td>
+          <td class="acucares">6.0</td>
+          <td class="proteinas">4.4</td>
+          <td class="gorduras">9.4</td>
+          <td class="saturadas">4.5</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">112</td>
+        </tr>
+
+        <tr data-calorias="210" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="26.2" data-gorduras="12.5"
+          data-saturadas="5.3" data-fibras="0.0" data-sodio="85">
+          <td>Salmão</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">210</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">26.2</td>
+          <td class="gorduras">12.5</td>
+          <td class="saturadas">5.3</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">85</td>
+        </tr>
+
+        <tr data-calorias="19" data-carboidratos="2.9" data-acucares="2.0" data-proteinas="1.1" data-gorduras="0.4"
+          data-saturadas="0.0" data-fibras="3.2" data-sodio="52">
+          <td>Salsinha</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">19</td>
+          <td class="carboidratos">2.9</td>
+          <td class="acucares">2.0</td>
+          <td class="proteinas">1.1</td>
+          <td class="gorduras">0.4</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.2</td>
+          <td class="sodio">52</td>
+        </tr>
+
+        <tr data-calorias="123" data-carboidratos="20.2" data-acucares="0.8" data-proteinas="2.1" data-gorduras="3.8"
+          data-saturadas="0.6" data-fibras="3.9" data-sodio="1">
+          <td>Soja</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">123</td>
+          <td class="carboidratos">20.2</td>
+          <td class="acucares">0.8</td>
+          <td class="proteinas">2.1</td>
+          <td class="gorduras">3.8</td>
+          <td class="saturadas">0.6</td>
+          <td class="fibras">3.9</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="46" data-carboidratos="14.5" data-acucares="10.2" data-proteinas="0.9" data-gorduras="0.3"
+          data-saturadas="0.0" data-fibras="2.2" data-sodio="0">
+          <td>Suco de laranja natural</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">46</td>
+          <td class="carboidratos">14.5</td>
+          <td class="acucares">10.2</td>
+          <td class="proteinas">0.9</td>
+          <td class="gorduras">0.3</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.2</td>
+          <td class="sodio">0</td>
+        </tr>
+
+        <tr data-calorias="47" data-carboidratos="15.4" data-acucares="9.0" data-proteinas="0.6" data-gorduras="0.2"
+          data-saturadas="0.1" data-fibras="1.4" data-sodio="3">
+          <td>Tangerina</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">47</td>
+          <td class="carboidratos">15.4</td>
+          <td class="acucares">9.0</td>
+          <td class="proteinas">0.6</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">1.4</td>
+          <td class="sodio">3</td>
+        </tr>
+
+        <tr data-calorias="142" data-carboidratos="0.0" data-acucares="0.0" data-proteinas="28.3" data-gorduras="14.4"
+          data-saturadas="2.7" data-fibras="0.0" data-sodio="50">
+          <td>Tilápia</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">142</td>
+          <td class="carboidratos">0.0</td>
+          <td class="acucares">0.0</td>
+          <td class="proteinas">28.3</td>
+          <td class="gorduras">14.4</td>
+          <td class="saturadas">2.7</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">50</td>
+        </tr>
+
+        <tr data-calorias="139" data-carboidratos="8.3" data-acucares="7.3" data-proteinas="3.8" data-gorduras="5.6"
+          data-saturadas="4.1" data-fibras="0.0" data-sodio="153">
+          <td>Tofu</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">139</td>
+          <td class="carboidratos">8.3</td>
+          <td class="acucares">7.3</td>
+          <td class="proteinas">3.8</td>
+          <td class="gorduras">5.6</td>
+          <td class="saturadas">4.1</td>
+          <td class="fibras">0.0</td>
+          <td class="sodio">153</td>
+        </tr>
+
+        <tr data-calorias="35" data-carboidratos="3.1" data-acucares="1.4" data-proteinas="1.5" data-gorduras="0.1"
+          data-saturadas="0.0" data-fibras="3.9" data-sodio="32">
+          <td>Tomate</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">35</td>
+          <td class="carboidratos">3.1</td>
+          <td class="acucares">1.4</td>
+          <td class="proteinas">1.5</td>
+          <td class="gorduras">0.1</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">3.9</td>
+          <td class="sodio">32</td>
+        </tr>
+
+        <tr data-calorias="114" data-carboidratos="28.1" data-acucares="0.2" data-proteinas="6.7" data-gorduras="2.3"
+          data-saturadas="0.1" data-fibras="3.8" data-sodio="5">
+          <td>Trigo</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">114</td>
+          <td class="carboidratos">28.1</td>
+          <td class="acucares">0.2</td>
+          <td class="proteinas">6.7</td>
+          <td class="gorduras">2.3</td>
+          <td class="saturadas">0.1</td>
+          <td class="fibras">3.8</td>
+          <td class="sodio">5</td>
+        </tr>
+
+        <tr data-calorias="78" data-carboidratos="19.3" data-acucares="9.5" data-proteinas="0.6" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="2.6" data-sodio="1">
+          <td>Uva</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">78</td>
+          <td class="carboidratos">19.3</td>
+          <td class="acucares">9.5</td>
+          <td class="proteinas">0.6</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.6</td>
+          <td class="sodio">1</td>
+        </tr>
+
+        <tr data-calorias="37" data-carboidratos="2.2" data-acucares="1.5" data-proteinas="1.0" data-gorduras="0.2"
+          data-saturadas="0.0" data-fibras="2.1" data-sodio="42">
+          <td>Vagem</td>
+          <td><input type="number" value="100" onchange="recalcular(this)"></td>
+          <td class="calorias">37</td>
+          <td class="carboidratos">2.2</td>
+          <td class="acucares">1.5</td>
+          <td class="proteinas">1.0</td>
+          <td class="gorduras">0.2</td>
+          <td class="saturadas">0.0</td>
+          <td class="fibras">2.1</td>
+          <td class="sodio">42</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const main = document.getElementById("main");
-      if (sidebar.style.width === "250px") {
-        sidebar.style.width = "0";
-        main.style.marginLeft = "0";
-      } else {
-        sidebar.style.width = "250px";
-        main.style.marginLeft = "250px";
-      }
-    }
-
     function recalcular(input) {
       const tr = input.closest("tr");
       const qtd = parseFloat(input.value) || 0;
@@ -239,6 +1503,7 @@
       });
     }
   </script>
-
+  <script src="script.js"></script>
 </body>
+
 </html>

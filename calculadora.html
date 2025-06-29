@@ -1,310 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Calculadora de IMC</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: 'Georgia', serif;
+      }
 
-    body {
-      background-color: #121212;
-      margin: 0;
-      color: white;
-    }
+      body {
+        background-image: url(imagens/Daily\ Energy\ Home\ \(1\)_page-0001.jpg);
+        background-size: 75%;
+        margin: 0;
+        color: white;
+      }
 
-    /* Botão menu */
-    .menu-btn {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 26px;
-      cursor: pointer;
-      z-index: 2;
-      color: #ffffff;
-    }
+      .main-content {
+        margin-left: 0;
+        transition: margin-left 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-    /* Sidebar */
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: #2A4553;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-    }
+      .calculadora {
+        background-color: #1c2f38;
+        padding: 30px;
+        border-radius: 12px;
+        width: 300px;
+        text-align: center;
+      }
 
-    .sidebar a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-      transition: 0.3s;
-    }
+      .calculadora h1 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
 
-    .sidebar a:hover {
-      background-color: #333;
-    }
+      .sexo-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        border: none;
+        padding: 10px 10px;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        margin: 20px 5px;
+      }
 
-    .sidebar .closebtn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 30px;
-    }
+      .sexo-buttons button {
+        width: 48%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        transition: 0.3s;
+      }
 
-    .sidebar .icon {
-      width: 20px;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
+      .gender-btn.selected {
+        border: 2px solid white;
+      }
 
-    .main-content {
-      margin-left: 0;
-      transition: margin-left 0.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+      .sexo-buttons .masculino {
+        background-color: #004d9b;
+      }
 
-    .calculadora {
-      background-color: #2A4553;
-      padding: 30px;
-      border-radius: 12px;
-      width: 300px;
-      text-align: center;
-    }
+      .sexo-buttons .feminino {
+        background-color: #8d2b5c;
+      }
 
-    .calculadora h1 {
-      color: white;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
+      .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
 
-    .sexo-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: white;
+      }
 
-    .sexo-buttons button {
-      width: 48%;
-      padding: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      color: white;
-      transition: 0.3s;
-    }
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        border: none;
+        border-radius: 6px;
+        background-color: #333;
+        color: white;
+      }
 
-    .sexo-buttons .masculino {
-      background-color: #3399ff;
-    }
+      .btn-calcular {
+        background-color: #335566;
+        color: white;
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.3s;
+      }
 
-    .sexo-buttons .feminino {
-      background-color: #ff66b2;
-    }
+      .btn-calcular:hover {
+        background-color: #45a049;
+      }
 
-    .input-group {
-      margin-bottom: 15px;
-      text-align: left;
-    }
+      #resultado {
+        margin-top: 20px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
 
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      color: white;
-    }
+  <body>
 
-    .input-group input {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      background-color: #333;
-      color: white;
-    }
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
 
-    .btn-calcular {
-      background-color: #4CAF50;
-      color: white;
-      font-size: 16px;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
-    }
-
-    .btn-calcular:hover {
-      background-color: #45a049;
-    }
-
-    #resultado {
-      margin-top: 20px;
-      font-size: 16px;
-    }
     
-    ul {
-    list-style-type: none;
-    background-color: #2a4553;
-    overflow: hidden;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    } 
-
-    .active-link {
-    background-color: #1c2f38;
-    color: white;
-    }
-
-    li a:hover {
-    background-color: #2a4553;
-    color: #ffffff;
-    }
-
-    li a {
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s;
-    color: 0.3s;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Botão para abrir a sidebar -->
-  <span class="menu-btn" onclick="toggleMenu()">☰</span>
-
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <ul>
-      <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
-      <li>
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <a href="#" class="closebtn" onclick="toggleMenu()">×</a>
+        <li>
           <a href="home.html"><img src="imagens/home.png" class="icon"></i> HOME</a>
-      </li>
-      <li>
-          <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i> INSTAGRAM</a>
-      </li>
-      <li class="active-link">
+        </li>
+        <li>
+          <a href="https://www.instagram.com/dailyenergyoficial/"><img src="imagens/insta.png" class="icon"></i>
+            INSTAGRAM</a>
+        </li>
+        <li class="active-link">
           <a href="calculadora.html"><img src="imagens/calculador.png" class="icon"></i> CALCULADORA IMC</a>
-      </li>
-      <li>
+        </li>
+        <li>
           <a href="tabela.html"><img src="imagens/table.png" class="icon"></i> TABELA NUTRICIONAL</a>
-      </li>
-      <li>
+        </li>
+        <li>
           <a href="dieta.html"><img src="imagens/garfo.png" class="icon"></i> DIETAS</a>
-      </li>
-      <li>
-          <a href="#"><img src="imagens/perfil.png" class="icon"></i> PERFIL</a>
-      </li>
-      <li>
-          <a href="#"><img src="imagens/registro.png" class="icon"></i> REGISTRO</a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Conteúdo principal -->
-  <div class="main-content" id="main">
-    <div class="calculadora">
-      <h1>Calculadora de IMC</h1>
-
-      <div class="sexo-buttons">
-        <button type="button" class="masculino" onclick="selecionarSexo('Masculino')">Masculino</button>
-        <button type="button" class="feminino" onclick="selecionarSexo('Feminino')">Feminino</button>
-      </div>
-
-      <div class="input-group">
-        <label for="idade">Idade (anos):</label>
-        <input type="number" id="idade" placeholder="Ex: 25">
-      </div>
-
-      <div class="input-group">
-        <label for="altura">Altura (cm):</label>
-        <input type="number" id="altura" placeholder="Ex: 170">
-      </div>
-
-      <div class="input-group">
-        <label for="peso">Peso (kg):</label>
-        <input type="number" id="peso" placeholder="Ex: 70">
-      </div>
-
-      <button class="btn-calcular" onclick="calcularIMC()">Calcular</button>
-
-      <div id="resultado"></div>
+        </li>
+      </ul>
     </div>
-  </div>
 
-  <script>
-    let sexoSelecionado = '';
+    <div class="main-content" id="main">
+      <div class="calculadora">
+        <h1>Calculadora de IMC</h1>
 
-    function selecionarSexo(sexo) {
-      sexoSelecionado = sexo;
-    }
+        <div class="sexo-buttons">
+          <button type="button" class="masculino gender-btn" id="masculino"
+            onclick="selecionarSexo('Masculino')">Masculino</button>
+          <button type="button" class="feminino gender-btn" id="feminino"
+            onclick="selecionarSexo('Feminino')">Feminino</button>
+        </div>
 
-    function calcularIMC() {
-      const idade = document.getElementById('idade').value;
-      const altura = document.getElementById('altura').value;
-      const peso = document.getElementById('peso').value;
-      const resultadoDiv = document.getElementById('resultado');
+        <div class="input-group">
+          <label for="idade">Idade (anos):</label>
+          <input type="number" id="idade" placeholder="Ex: 25">
+        </div>
 
-      if (!sexoSelecionado || !idade || !altura || !peso) {
-        resultadoDiv.innerHTML = "Por favor, preencha todos os campos.";
-        return;
+        <div class="input-group">
+          <label for="altura">Altura (cm):</label>
+          <input type="number" id="altura" placeholder="Ex: 170">
+        </div>
+
+        <div class="input-group">
+          <label for="peso">Peso (kg):</label>
+          <input type="number" id="peso" placeholder="Ex: 70">
+        </div>
+
+        <button class="btn-calcular" onclick="calcularIMC()">Calcular</button>
+
+        <div id="resultado"></div>
+      </div>
+    </div>
+
+    <script>
+      let sexoSelecionado = '';
+
+      function selecionarSexo(sexo) {
+        sexoSelecionado = sexo;
+
+        // Remove a classe 'selected' de ambos os botões
+        document.getElementById('masculino').classList.remove('selected');
+        document.getElementById('feminino').classList.remove('selected');
+
+        // Adiciona a classe 'selected' ao botão correspondente
+        if (sexo === 'Masculino') {
+          document.getElementById('masculino').classList.add('selected');
+        } else if (sexo === 'Feminino') {
+          document.getElementById('feminino').classList.add('selected');
+        }
       }
 
-      const alturaM = altura / 100;
-      const imc = peso / (alturaM * alturaM);
-      let classificacao = '';
+      function calcularIMC() {
+        const idade = document.getElementById('idade').value;
+        const altura = document.getElementById('altura').value;
+        const peso = document.getElementById('peso').value;
+        const resultadoDiv = document.getElementById('resultado');
 
-      if (imc < 18.5) {
-        classificacao = 'Abaixo do peso';
-      } else if (imc < 24.9) {
-        classificacao = 'Peso normal';
-      } else if (imc < 29.9) {
-        classificacao = 'Sobrepeso';
-      } else {
-        classificacao = 'Obesidade';
+        if (!sexoSelecionado || !idade || !altura || !peso) {
+          resultadoDiv.innerHTML = "Por favor, preencha todos os campos.";
+          return;
+        }
+
+        const alturaM = altura / 100;
+        const imc = peso / (alturaM * alturaM);
+        let classificacao = '';
+
+        if (imc < 18.5) {
+          classificacao = 'Abaixo do peso';
+        } else if (imc < 24.9) {
+          classificacao = 'Peso normal';
+        } else if (imc < 29.9) {
+          classificacao = 'Sobrepeso';
+        } else {
+          classificacao = 'Obesidade';
+        }
+
+        resultadoDiv.innerHTML = `
+          Sexo: ${sexoSelecionado}<br>
+          Idade: ${idade} anos<br>
+          IMC: ${imc.toFixed(2)}<br>
+          Classificação: ${classificacao}
+        `;
       }
+    </script>
+    <script src="script.js"></script>
+  </body>
 
-      resultadoDiv.innerHTML = `
-        Sexo: ${sexoSelecionado}<br>
-        Idade: ${idade} anos<br>
-        IMC: ${imc.toFixed(2)}<br>
-        Classificação: ${classificacao}
-      `;
-    }
-
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const main = document.getElementById("main");
-      if (sidebar.style.width === "250px") {
-        sidebar.style.width = "0";
-        main.style.marginLeft = "0";
-      } else {
-        sidebar.style.width = "250px";
-        main.style.marginLeft = "250px";
-      }
-    }
-  </script>
-</body>
 </html>
